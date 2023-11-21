@@ -1,6 +1,13 @@
+using ParserAPI.Business;
+using ParserAPI.Business.Interfaces;
+using ParserAPI.Mapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(typeof(ParserAPIMapper));
+
+builder.Services.AddScoped<IParserService, ParserService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

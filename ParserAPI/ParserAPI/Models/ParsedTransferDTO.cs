@@ -1,4 +1,14 @@
+namespace ParserAPI.Models;
+
 public class ParsedTransferDTO
 {
+    public Guid Reference { get; set; }
+    
+    public string From { get; set; }
 
+    public string To { get; set; }
+
+    public int Amount { get; set; }
+
+    public string Currency { get; set; }
 }
