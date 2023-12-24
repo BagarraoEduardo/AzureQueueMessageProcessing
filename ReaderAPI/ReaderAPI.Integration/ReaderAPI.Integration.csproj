@@ -7,6 +7,8 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
   <ItemGroup>
     <OpenApiReference Include="./ParserAPI.json" CodeGenerator="NSwagCSharp" />
