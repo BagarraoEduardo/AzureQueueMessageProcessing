@@ -1,4 +1,7 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using ParserAPI.Models;
+using ReaderAPI.Business;
 
 namespace ReaderAPI.Controllers;
 
@@ -8,12 +11,19 @@ public class ReaderController : ControllerBase
 {
 
     private readonly ILogger<ReaderController> _logger;
+    private readonly IMapper _mapper;
+    private readonly IReaderService _readerService;
 
-    public ReaderController(ILogger<ReaderController> logger)
+    public ReaderController(
+        ILogger<ReaderController> logger,
+        IMapper mapper,
+        IReaderService readerService)
     {
         _logger = logger;
+        _mapper = mapper;
+        _readerService = readerService;
     }
-    
+
     [HttpGet(Name = "GetParsedTransfers")]
     [Produces("application/json")]
     [ProducesResponseType(typeof(ParsedTransferResponseDTO), StatusCodes.Status200OK)]
@@ -24,7 +34,9 @@ public class ReaderController : ControllerBase
 
         try
         {
-            response = _mapper.Map<ParsedTransferResponseDTO>(await _parserService.ParseTransfer(file.OpenReadStream()));
+            response = _mapper.Map<ParsedTransferResponseDTO>(await _readerService.ParseAvailableTransferFiles());
+
+            response.Success = true;
 
             return Ok(response);
         }

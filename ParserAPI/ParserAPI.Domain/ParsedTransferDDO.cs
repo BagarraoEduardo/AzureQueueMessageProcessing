@@ -16,7 +16,7 @@ public class ParsedTransferDDO
     public string To { get; set; }
 
     [XmlElement(ElementName = "amount")]
-    public int Amount { get; set; }
+    public decimal Amount { get; set; }
 
     [XmlElement(ElementName = "currency")]
     public string Currency { get; set; }

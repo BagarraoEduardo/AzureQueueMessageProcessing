@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "documentGenerator": {
     "fromDocument": {
-      "url": "https://localhost:7139/swagger/v1/swagger.json",
+      "url": "https://10.0.2.2:7139/swagger/v1/swagger.json",
       "output": "ParserAPI.nswag.json",
       "newLineBehavior": "Auto"
     }
@@ -55,7 +55,7 @@
       "wrapResponseMethods": [],
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",
-      "namespace": "ReaderAPI.Integration.ParserAPI",
+      "namespace": "UnchaseClientGenerator.ParserAPI",
       "requiredPropertiesMustBeDefined": true,
       "dateType": "System.DateTimeOffset",
       "jsonConverters": null,

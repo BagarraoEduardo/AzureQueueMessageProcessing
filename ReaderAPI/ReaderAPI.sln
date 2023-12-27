@@ -1,10 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderAPI", "ReaderAPI\ReaderAPI.csproj", "{F68298D2-9B2F-4258-B100-9A5A977C49B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderAPI.Domain", "ReaderAPI.Domain\ReaderAPI.Domain.csproj", "{C04B02CF-05E2-4F78-AB31-9A8246856330}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderAPI.Integration", "ReaderAPI.Integration\ReaderAPI.Integration.csproj", "{6A0F7239-3740-4624-9718-3B585B7FB1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderAPI.Business", "ReaderAPI.Business\ReaderAPI.Business.csproj", "{6945B73D-95BE-4410-A6E8-61F2F13FE7AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaderAPI.Utility", "ReaderAPI.Utility\ReaderAPI.Utility.csproj", "{2B850BCD-04C3-4CB7-9A8B-2215098D8E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,13 @@ Global
 		{6A0F7239-3740-4624-9718-3B585B7FB1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A0F7239-3740-4624-9718-3B585B7FB1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A0F7239-3740-4624-9718-3B585B7FB1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6945B73D-95BE-4410-A6E8-61F2F13FE7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6945B73D-95BE-4410-A6E8-61F2F13FE7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6945B73D-95BE-4410-A6E8-61F2F13FE7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6945B73D-95BE-4410-A6E8-61F2F13FE7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B850BCD-04C3-4CB7-9A8B-2215098D8E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B850BCD-04C3-4CB7-9A8B-2215098D8E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B850BCD-04C3-4CB7-9A8B-2215098D8E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B850BCD-04C3-4CB7-9A8B-2215098D8E17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

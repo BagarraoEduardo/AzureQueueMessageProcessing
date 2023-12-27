@@ -7,11 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+        <PackageReference Include="AutoMapper" Version="12.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="WeatherForecast.cs" />
+      <ProjectReference Include="..\ReaderAPI.Business\ReaderAPI.Business.csproj" />
+      <ProjectReference Include="..\ReaderAPI.Integration\ReaderAPI.Integration.csproj" />
+      <ProjectReference Include="..\ReaderAPI.Utility\ReaderAPI.Utility.csproj" />
+      <ProjectReference Include="..\ReaderAPI.Domain\ReaderAPI.Domain.csproj" />
     </ItemGroup>
 
 </Project>

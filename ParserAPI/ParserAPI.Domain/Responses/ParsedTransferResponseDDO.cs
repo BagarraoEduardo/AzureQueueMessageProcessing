@@ -1,8 +1,6 @@
 namespace ParserAPI.Domain.Responses;
 
-public class ParsedTransferResponseDDO
+public class ParsedTransferResponseDDO : BaseResponseDDO
 {
-    public bool Success { get; set; }
-    public string ErrorMessage { get; set; }
     public ParsedTransferDDO Data { get; set; }
 }
