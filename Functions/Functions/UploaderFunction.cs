@@ -19,7 +19,17 @@ namespace Functions.Functions
         [Function("UploaderFunction")]
         public async Task Run([TimerTrigger("0 */1 * * *", RunOnStartup = true)] TimerInfo myTimer)
         {
-            var x = await _uploaderService.UploadFiles();
+            var parsedTransfersResponse = await _uploaderService.UploadFiles();
+
+            if(parsedTransfersResponse.Success)
+            {
+                
+            }
+            else
+            {
+
+            }
+
 
 
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");

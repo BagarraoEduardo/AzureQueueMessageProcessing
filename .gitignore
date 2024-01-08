@@ -35,3 +35,4 @@ msbuild.wrn
 
 Functions/__azurite*
 Functions/__blobstorage__
+Functions/__queuestorage__

@@ -1,7 +1,13 @@
 ﻿
 using Functions.Business.Interfaces;
 using Functions.Integrations.Interfaces.ReaderAPI;
+using Functions.Integrations.Interfaces.StorageAccount.Queues;
+using Functions.Options;
+using Microsoft.Azure.Storage.Queue;
+using Microsoft.Azure.Storage.Queue.Protocol;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace Functions.Business;
 
@@ -9,13 +15,19 @@ public class UploaderService : IUploaderService
 {
     private readonly ILogger<UploaderService> _logger;
     private readonly IReaderAPIClient _readerApiClient;
+    private readonly IAzureQueue _azureQueue;
+    private readonly UploaderOptions _uploaderOptions;
 
     public UploaderService(
-        ILogger<UploaderService> logger, 
-        IReaderAPIClient client)
+        ILogger<UploaderService> logger,
+        IReaderAPIClient client,
+        IAzureQueue azureQueue,
+        IOptions<UploaderOptions> uploaderOptions)
     {
         _logger = logger;
         _readerApiClient = client;
+        _azureQueue = azureQueue;
+        _uploaderOptions = uploaderOptions.Value;
     }
 
     public async Task<(bool Success, string ErrorMessage)> UploadFiles()
@@ -24,11 +36,16 @@ public class UploaderService : IUploaderService
 
         try
         {
-            var parsedTransfers = await _readerApiClient.ReadAvailableFiles();
+            var parsedTransfersResponse = await _readerApiClient.ReadAvailableFiles();
 
-            if(parsedTransfers.Success)
+            if(parsedTransfersResponse.Success)
             {
                 Console.WriteLine("Success!");
+
+                foreach(var parsedTransfer in parsedTransfersResponse.Transfers)
+                {
+                    await _azureQueue.Add(_uploaderOptions.QueueName, new CloudQueueMessage(JsonConvert.SerializeObject(parsedTransfer)));
+                }
             }
             else
             {
