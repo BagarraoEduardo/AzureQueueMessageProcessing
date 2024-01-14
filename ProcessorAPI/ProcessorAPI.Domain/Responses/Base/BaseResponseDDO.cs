@@ -1,4 +1,4 @@
-﻿namespace ProcessorAPI.Domain;
+﻿namespace ProcessorAPI.Domain.Responses.Base;
 
 public class BaseResponseDDO
 {

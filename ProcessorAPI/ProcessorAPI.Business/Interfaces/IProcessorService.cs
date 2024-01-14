@@ -1,4 +1,5 @@
 using ProcessorAPI.Domain;
+using ProcessorAPI.Domain.Responses;
 
 namespace ProcessorAPI.Business.Interfaces;
 

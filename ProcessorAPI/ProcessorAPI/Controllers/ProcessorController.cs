@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ProcessorAPI.Business.Interfaces;
 using ProcessorAPI.Domain;
+using ProcessorAPI.Models;
+using ProcessorAPI.Models.Response;
 
 namespace ProcessorAPI.Controllers;
 

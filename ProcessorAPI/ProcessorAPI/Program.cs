@@ -2,9 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using ProcessorAPI;
 using ProcessorAPI.Business;
 using ProcessorAPI.Business.Interfaces;
+using ProcessorAPI.Business.Mapper;
 using ProcessorAPI.DataAccess.Context;
 using ProcessorAPI.DataAccess.Interfaces.Repositories;
 using ProcessorAPI.DataAccess.Repositories;
+using ProcessorAPI.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

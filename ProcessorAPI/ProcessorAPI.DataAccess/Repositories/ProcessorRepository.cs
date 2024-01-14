@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ProcessorAPI.DataAccess.Context;
+using ProcessorAPI.DataAccess.Entities;
+using ProcessorAPI.DataAccess.Entities.Responses;
 using ProcessorAPI.DataAccess.Interfaces.Repositories;
 
 namespace ProcessorAPI.DataAccess.Repositories;

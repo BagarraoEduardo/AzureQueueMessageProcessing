@@ -1,4 +1,4 @@
-﻿namespace ProcessorAPI.DataAccess;
+﻿namespace ProcessorAPI.DataAccess.Entities.Responses.Base;
 
 public class BaseResponse
 {

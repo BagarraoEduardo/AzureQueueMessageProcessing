@@ -1,4 +1,4 @@
-﻿namespace ProcessorAPI;
+﻿namespace ProcessorAPI.Models.Response.Base;
 
 public class BaseResponseDTO
 {

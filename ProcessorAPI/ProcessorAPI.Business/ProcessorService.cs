@@ -2,8 +2,10 @@
 using Microsoft.Extensions.Logging;
 using ProcessorAPI.Business.Interfaces;
 using ProcessorAPI.DataAccess;
+using ProcessorAPI.DataAccess.Entities;
 using ProcessorAPI.DataAccess.Interfaces.Repositories;
 using ProcessorAPI.Domain;
+using ProcessorAPI.Domain.Responses;
 
 namespace ProcessorAPI.Business;
 

@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
-using ProcessorAPI.DataAccess;
+using ProcessorAPI.DataAccess.Entities;
+using ProcessorAPI.DataAccess.Entities.Responses;
+using ProcessorAPI.DataAccess.Entities.Responses.Base;
 using ProcessorAPI.Domain;
+using ProcessorAPI.Domain.Responses;
+using ProcessorAPI.Domain.Responses.Base;
 
-namespace ProcessorAPI.Business;
+namespace ProcessorAPI.Business.Mapper;
 
 public class BusinessMapper : Profile
 {

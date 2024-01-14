@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProcessorAPI.DataAccess;
+namespace ProcessorAPI.DataAccess.Entities;
 
 public class ParsedTransfer
 {

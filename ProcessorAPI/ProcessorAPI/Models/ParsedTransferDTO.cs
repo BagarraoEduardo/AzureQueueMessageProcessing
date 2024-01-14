@@ -1,4 +1,4 @@
-﻿namespace ProcessorAPI;
+﻿namespace ProcessorAPI.Models;
 
 public class ParsedTransferDTO
 {
