@@ -1,9 +1,10 @@
 ﻿using System.Net.Mime;
+using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ReaderAPI.Domain;
 using ReaderAPI.Domain.Responses;
-using ReaderAPI.Integration;
+using ReaderAPI.Integration.Interfaces.ParserAPI;
 using ReaderAPI.Integration.ParserAPI;
 using FileOptions = ReaderAPI.Utility.FileOptions;
 
@@ -13,6 +14,7 @@ public class ReaderService : IReaderService
 {
     private readonly IParserAPIClient _parserAPIClient;
     private readonly IFileHandler _fileHandler;
+    private readonly IMapper _mapper;
     private readonly ILogger<ReaderService> _logger;
     private FileOptions _options;
 
@@ -20,12 +22,14 @@ public class ReaderService : IReaderService
         IParserAPIClient parserAPIClient,
         ILogger<ReaderService> logger,
         IOptions<FileOptions> options,
-        IFileHandler fileHandler)
+        IFileHandler fileHandler,
+        IMapper mapper)
     {
         _parserAPIClient = parserAPIClient;
         _logger = logger;
         _options = options.Value;
         _fileHandler = fileHandler;
+        _mapper = mapper;
     }
 
     public async Task<ParsedTransferResponseDDO> ParseAvailableTransferFiles()
@@ -44,32 +48,26 @@ public class ReaderService : IReaderService
                 };
 
                 var fileParameter = new FileParameter(memo, fileList[i].Name, MediaTypeNames.Application.Xml);
-
                 var result = await _parserAPIClient.ParseFile(fileParameter);
 
                 if(result.Success)
                 {
-                    var parsedTransfer = new ParsedTransferDDO()
-                    {
-                        Amount = Convert.ToDecimal(result.Data.Amount),
-                        Currency = result.Data.Currency,
-                        From = result.Data.From,
-                        Reference = result.Data.Reference,
-                        To = result.Data.From
-                    };
-                    response.Transfers.Add(parsedTransfer);
+                    response.Transfers.Add(_mapper.Map<ParsedTransferDDO>(result.Data));
                     fileList[i].Delete();                    
                 }
                 else
                 {
-                    _logger.LogError("A problem ocurred while trying to parse the file. In order to be parsed on the next API request, the file will not be deleted.");
+                    _logger.LogError("An error ocurred while trying to parse the file. In order to be parsed on the next API request, the file will not be deleted.");
                 }
             }
+            
             response.Success = true;
         }
         catch(Exception exception)
         {
-            response.ErrorMessage = $"An exception ocurred: {exception.Message}.";
+            var errorMessage = $"An exception has ocurred. Error: {exception.Message}.";
+            _logger.LogError(errorMessage);
+            response.ErrorMessage = errorMessage;
         }
 
         return response;

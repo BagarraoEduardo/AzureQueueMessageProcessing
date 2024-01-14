@@ -1,4 +1,4 @@
-﻿namespace ReaderAPI.Domain.Responses;
+﻿namespace ReaderAPI.Domain.Responses.Base;
 
 public class BaseResponseDDO
 {

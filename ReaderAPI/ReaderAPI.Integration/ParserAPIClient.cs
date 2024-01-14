@@ -1,6 +1,6 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ReaderAPI.Integration.Interfaces.ParserAPI;
 using ReaderAPI.Integration.ParserAPI;
 using ReaderAPI.Utility;
 
@@ -28,9 +28,10 @@ public class ParserAPIClient : Client, IParserAPIClient
         }
         catch(Exception exception)
         {
-            var errorMessage = "Ocurred an expected error while trying to Parse a file into a transfer.";
+            var errorMessage = $"An exception has ocurred. Error: {exception.Message}";
             _logger.LogError(exception, errorMessage);
             response.ErrorMessage = errorMessage;
+            response.Success = false;
         }
 
         return response;

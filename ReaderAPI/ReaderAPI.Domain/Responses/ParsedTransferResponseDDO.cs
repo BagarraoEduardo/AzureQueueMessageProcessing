@@ -1,4 +1,6 @@
-﻿namespace ReaderAPI.Domain.Responses;
+﻿using ReaderAPI.Domain.Responses.Base;
+
+namespace ReaderAPI.Domain.Responses;
 
 public class ParsedTransferResponseDDO : BaseResponseDDO
 {

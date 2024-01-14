@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
-using ReaderAPI.Integration.ParserAPI;
+﻿using Microsoft.Extensions.Options;
 using FileOptions = ReaderAPI.Utility.FileOptions;
 
 namespace ReaderAPI.Business;

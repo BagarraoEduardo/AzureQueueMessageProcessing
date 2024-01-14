@@ -1,5 +1,6 @@
 using ReaderAPI.Business;
 using ReaderAPI.Integration;
+using ReaderAPI.Integration.Interfaces.ParserAPI;
 using ReaderAPI.Mapper;
 using ReaderAPI.Utility;
 using FileOptions = ReaderAPI.Utility.FileOptions;
@@ -7,7 +8,9 @@ using FileOptions = ReaderAPI.Utility.FileOptions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddAutoMapper(typeof(ReaderAPIMapper));
+builder.Services.AddAutoMapper(
+    typeof(ReaderAPIMapper), 
+    typeof(BussinessMapper));
 
 builder.Services.Configure<ParserAPIOptions>(options => builder.Configuration.GetSection("ParserAPI").Bind(options));
 builder.Services.Configure<FileOptions>(options => builder.Configuration.GetSection("FileOptions").Bind(options));

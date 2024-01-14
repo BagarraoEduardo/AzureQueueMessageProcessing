@@ -1,6 +1,7 @@
-﻿namespace ReaderAPI.Utility;
+﻿using ReaderAPI.Utility.Base;
 
-public class ParserAPIOptions
+namespace ReaderAPI.Utility;
+
+public class ParserAPIOptions : BaseUrlOptions
 {
-    public string Url { get; set; }
 }

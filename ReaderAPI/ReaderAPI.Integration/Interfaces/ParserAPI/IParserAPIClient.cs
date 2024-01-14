@@ -1,6 +1,6 @@
 ﻿using ReaderAPI.Integration.ParserAPI;
 
-namespace ReaderAPI.Integration;
+namespace ReaderAPI.Integration.Interfaces.ParserAPI;
 
 public interface IParserAPIClient
 {

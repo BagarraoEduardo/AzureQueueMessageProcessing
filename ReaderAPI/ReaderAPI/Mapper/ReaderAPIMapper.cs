@@ -2,6 +2,7 @@ using AutoMapper;
 using ParserAPI.Models;
 using ReaderAPI.Domain;
 using ReaderAPI.Domain.Responses;
+using ReaderAPI.Domain.Responses.Base;
 
 namespace ReaderAPI.Mapper;
 

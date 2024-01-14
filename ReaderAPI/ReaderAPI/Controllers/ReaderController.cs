@@ -42,7 +42,7 @@ public class ReaderController : ControllerBase
         }
         catch(Exception exception)
         {
-            var errorMessage = "An exception has occurred while trying to parse the file.";
+            var errorMessage = $"An exception has occurred. Error: {exception}";
             response.ErrorMessage = errorMessage;
             _logger.LogError(exception, errorMessage);
             return BadRequest(response); 
