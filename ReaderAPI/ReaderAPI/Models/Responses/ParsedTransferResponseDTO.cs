@@ -1,6 +1,8 @@
 using ReaderAPI;
+using ReaderAPI.Integration.ParserAPI;
+using ReaderAPI.Models.Responses.Base;
 
-namespace ParserAPI.Models;
+namespace ReaderAPI.Models.Responses;
 
 public class ParsedTransferResponseDTO : BaseResponseDTO
 {

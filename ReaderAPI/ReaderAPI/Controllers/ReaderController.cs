@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ParserAPI.Models;
 using ReaderAPI.Business;
+using ReaderAPI.Models.Responses;
 
 namespace ReaderAPI.Controllers;
 
@@ -42,7 +42,7 @@ public class ReaderController : ControllerBase
         }
         catch(Exception exception)
         {
-            var errorMessage = $"An exception has occurred. Error: {exception}";
+            var errorMessage = $"An exception has occurred. Error: {exception.Message}";
             response.ErrorMessage = errorMessage;
             _logger.LogError(exception, errorMessage);
             return BadRequest(response); 

@@ -32,16 +32,16 @@ public class ParserService : IParserService
                 var parsedTransfer = serializer.Deserialize(stringReader) as ParsedTransferDDO;
 
                 response.Data = parsedTransfer;
-                response.Success = true;
+                response.Success = parsedTransfer == null ? false : true;
             }
             else
             {
-                response.ErrorMessage = "The file conversion retrieved a null or empty string.";
+                response.ErrorMessage = "The file conversion retrieved a null or an empty string.";
             }
         }
         catch (Exception exception)
         {
-            var errorMessage = "An exception occurred on the service layer.";
+            var errorMessage = $"An exception has occurred. Error: {exception.Message}";
             response.ErrorMessage = errorMessage;
             _logger.LogError(exception, errorMessage);
         }

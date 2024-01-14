@@ -1,4 +1,4 @@
-﻿namespace ParserAPI;
+﻿namespace ParserAPI.Models.Responses.Base;
 
 public class BaseResponseDTO
 {

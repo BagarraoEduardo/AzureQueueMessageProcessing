@@ -1,4 +1,4 @@
-﻿namespace ParserAPI.Domain;
+﻿namespace ParserAPI.Domain.Responses.Base;
 
 public class BaseResponseDDO
 {

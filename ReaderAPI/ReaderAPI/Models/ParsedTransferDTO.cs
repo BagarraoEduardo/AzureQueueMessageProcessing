@@ -1,4 +1,4 @@
-﻿namespace ReaderAPI;
+﻿namespace ReaderAPI.Models;
 
 public class ParsedTransferDTO
 {

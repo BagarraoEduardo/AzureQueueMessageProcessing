@@ -16,18 +16,15 @@ public class ReaderService : IReaderService
     private readonly IFileHandler _fileHandler;
     private readonly IMapper _mapper;
     private readonly ILogger<ReaderService> _logger;
-    private FileOptions _options;
 
     public ReaderService(
         IParserAPIClient parserAPIClient,
         ILogger<ReaderService> logger,
-        IOptions<FileOptions> options,
         IFileHandler fileHandler,
         IMapper mapper)
     {
         _parserAPIClient = parserAPIClient;
         _logger = logger;
-        _options = options.Value;
         _fileHandler = fileHandler;
         _mapper = mapper;
     }
@@ -42,22 +39,29 @@ public class ReaderService : IReaderService
 
             for(int i = fileList.Count - 1; i >= 0; i--)
             {
-                var memo = new MemoryStream(File.ReadAllBytes(fileList[i].FullName))
+                try
                 {
-                    Position = 0
-                };
+                    var memo = new MemoryStream(File.ReadAllBytes(fileList[i].FullName))
+                    {
+                        Position = 0
+                    };
 
-                var fileParameter = new FileParameter(memo, fileList[i].Name, MediaTypeNames.Application.Xml);
-                var result = await _parserAPIClient.ParseFile(fileParameter);
+                    var fileParameter = new FileParameter(memo, fileList[i].Name, MediaTypeNames.Application.Xml);
+                    var result = await _parserAPIClient.ParseFile(fileParameter);
 
-                if(result.Success)
-                {
-                    response.Transfers.Add(_mapper.Map<ParsedTransferDDO>(result.Data));
-                    fileList[i].Delete();                    
+                    if(result.Success)
+                    {
+                        response.Transfers.Add(_mapper.Map<ParsedTransferDDO>(result.Data));
+                        fileList[i].Delete();                    
+                    }
+                    else
+                    {
+                        _logger.LogError("An error ocurred while trying to parse the file. In order to be parsed on the next API request, the file will not be deleted.");
+                    }
                 }
-                else
+                catch(Exception exception)
                 {
-                    _logger.LogError("An error ocurred while trying to parse the file. In order to be parsed on the next API request, the file will not be deleted.");
+                    _logger.LogError(exception, $"An exception has ocurred while parsing a file. Error: {exception.Message}. File: {fileList[i].Name}");
                 }
             }
             

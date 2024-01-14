@@ -1,8 +1,10 @@
 using AutoMapper;
-using ParserAPI.Models;
 using ReaderAPI.Domain;
 using ReaderAPI.Domain.Responses;
 using ReaderAPI.Domain.Responses.Base;
+using ReaderAPI.Models;
+using ReaderAPI.Models.Responses;
+using ReaderAPI.Models.Responses.Base;
 
 namespace ReaderAPI.Mapper;
 

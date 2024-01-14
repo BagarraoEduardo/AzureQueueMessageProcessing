@@ -16,6 +16,6 @@ public class FileHandler : IFileHandler
     {
         var directoryInfo = new DirectoryInfo(_options.Path);
 
-        return directoryInfo.GetFiles().ToList();
+        return directoryInfo.GetFiles()?.ToList() ?? new List<FileInfo>();
     }
 }
