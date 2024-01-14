@@ -1,6 +1,8 @@
-﻿namespace Functions.Business.Interfaces;
+﻿using Functions.Domain.Responses;
+
+namespace Functions.Business.Interfaces;
 
 public interface IUploaderService
 {
-    Task<(bool Success, string ErrorMessage)> UploadFiles();
+    Task<UploadParsedTransfersResponseDDO> UploadFiles();
 }

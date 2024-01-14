@@ -1,6 +1,6 @@
 ﻿namespace Functions.Options;
 
-public class UploaderOptions
+public class QueueOptions
 {
     public string QueueName { get; set; }
 }

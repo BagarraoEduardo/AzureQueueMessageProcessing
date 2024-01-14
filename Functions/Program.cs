@@ -1,9 +1,11 @@
+using Functions;
 using Functions.Business;
 using Functions.Business.Interfaces;
-using Functions.Integrations.Interfaces.ReaderAPI;
+using Functions.Integrations;
+using Functions.Integrations.Interfaces;
 using Functions.Integrations.Interfaces.StorageAccount.Queues;
-using Functions.Integrations.ReaderAPI;
 using Functions.Integrations.StorageAccount.Queues;
+using Functions.Mapper;
 using Functions.Options;
 using Microsoft.Azure.Storage;
 using Microsoft.Extensions.Configuration;
@@ -22,19 +24,33 @@ var host = new HostBuilder()
     {
         var configuration = context.Configuration;
 
-        services.AddLogging();
+        services
+            .AddLogging();
+
+        services
+            .AddAutoMapper(typeof(BusinessMapper));
     
         services.AddSingleton(serviceCollection => CloudStorageAccount.Parse(configuration["Storage:ConnectionString"]));
     
-        services.Configure<ReaderAPIOptions>(options => configuration.GetSection("ReaderAPI").Bind(options));
-        services.Configure<UploaderOptions>(options => configuration.GetSection("Queue").Bind(options));
-
-        services.AddHttpClient<IReaderAPIClient, ReaderAPIClient>(http => http.BaseAddress = new Uri(configuration.GetSection("ReaderAPI:Url").Value));
+        services
+            .Configure<QueueOptions>(options => configuration.GetSection("Queue").Bind(options));
+        services
+            .Configure<ReaderAPIOptions>(options => configuration.GetSection("ReaderAPI").Bind(options));
+        services
+            .Configure<ProcessorAPIOptions>(options => configuration.GetSection("ProcessorAPI").Bind(options)) ;
 
         services
-            .AddScoped<IAzureQueue, AzureQueue>()
-            .AddScoped<IUploaderService, UploaderService>();
+            .AddHttpClient<IReaderAPIClient, ReaderAPIClient>(http => http.BaseAddress = new Uri(configuration.GetSection("ReaderAPI:Url").Value));
+        services
+            .AddHttpClient<IProcessorAPIClient, ProcessorAPIClient>(http => http.BaseAddress = new Uri(configuration.GetSection("ProcessorAPI:Url").Value));
 
+        services
+            .AddScoped<IAzureQueue, AzureQueue>();
+            
+        services
+            .AddScoped<IUploaderService, UploaderService>();
+        services
+            .AddScoped<IProcessorService, ProcessorService>();
     })
     .Build();
 

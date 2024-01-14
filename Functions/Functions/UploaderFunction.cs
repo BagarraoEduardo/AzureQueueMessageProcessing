@@ -1,4 +1,5 @@
 using System;
+using AutoMapper;
 using Functions.Business.Interfaces;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
@@ -10,27 +11,18 @@ namespace Functions.Functions
         private readonly ILogger _logger;
         private readonly IUploaderService _uploaderService;
 
-        public UploaderFunction(ILoggerFactory loggerFactory, IUploaderService uploaderService)
+        public UploaderFunction(
+            ILoggerFactory loggerFactory,
+            IUploaderService uploaderService)
         {
             _logger = loggerFactory.CreateLogger<UploaderFunction>();
             _uploaderService = uploaderService;
         }
 
         [Function("UploaderFunction")]
-        public async Task Run([TimerTrigger("0 */1 * * *", RunOnStartup = true)] TimerInfo myTimer)
+        public async Task Run([TimerTrigger("* * * * *", RunOnStartup = true)] TimerInfo myTimer)
         {
-            var parsedTransfersResponse = await _uploaderService.UploadFiles();
-
-            if(parsedTransfersResponse.Success)
-            {
-                
-            }
-            else
-            {
-
-            }
-
-
+            await _uploaderService.UploadFiles();
 
             _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             

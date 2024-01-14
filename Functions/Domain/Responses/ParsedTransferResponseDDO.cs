@@ -1,4 +1,6 @@
-﻿namespace Functions;
+﻿using Functions.Domain.Responses.Base;
+
+namespace Functions.Domain.Responses;
 
 public class ParsedTransferResponseDDO : BaseResponseDDO
 {

@@ -1,4 +1,4 @@
-﻿namespace Functions;
+﻿namespace Functions.Domain.Responses.Base;
 
 public class BaseResponseDDO
 {

@@ -1,7 +1,6 @@
 ﻿using Functions.Integrations.Interfaces.StorageAccount.Queues;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Queue;
-using Microsoft.Extensions.Logging;
 
 namespace Functions.Integrations.StorageAccount.Queues;
 
@@ -42,8 +41,13 @@ public class AzureQueue : IAzureQueue
 
     public async Task<List<CloudQueueMessage>> BulkGet(string queueName, int numberOfMessages)
     {
-        var messages = await _cloudQueueClient.GetQueueReference(queueName).GetMessagesAsync(numberOfMessages);
+         var queueReference = _cloudQueueClient.GetQueueReference(queueName);
 
-        return messages?.ToList() ?? new List<CloudQueueMessage>();
+        if(await queueReference.ExistsAsync())
+        {
+            return (await queueReference.GetMessagesAsync(numberOfMessages))?.ToList() ?? new List<CloudQueueMessage>();
+        }
+
+        return new List<CloudQueueMessage>();
     }
 }

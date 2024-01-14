@@ -1,4 +1,4 @@
-﻿namespace Functions;
+﻿namespace Functions.Domain;
 
 public class ParsedTransferDDO
 {
