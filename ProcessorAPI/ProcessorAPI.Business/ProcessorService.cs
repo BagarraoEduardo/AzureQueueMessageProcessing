@@ -36,7 +36,7 @@ public class ProcessorService : IProcessorService
         }
         catch(Exception exception)
         {
-            var errorMessage = $"An exception has ocurred. Exception: {exception.Message}";
+            var errorMessage = $"An exception has ocurred. Error: {exception.Message}";
             _logger.LogError(exception, errorMessage);
             response.Success = false;
             response.ErrorMessage = errorMessage;
