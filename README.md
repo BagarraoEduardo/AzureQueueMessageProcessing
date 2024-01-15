@@ -30,4 +30,4 @@ You can also see this video that I recorded that shows this working:
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/hZ0GALstjuQ/0.jpg)](https://www.youtube.com/watch?v=hZ0GALstjuQ)
 
-Hope you enjoy! If you are interested in discussing any idea, you can contact me through my [portfolio](https://www.eduardobagarrao.com) or [email me]!(mailto:general@eduardobagarrao.com) 
+Hope you enjoy! If you are interested in discussing any idea, you can contact me through my [portfolio](https://www.eduardobagarrao.com) or [email me](mailto:general@eduardobagarrao.com)! 
